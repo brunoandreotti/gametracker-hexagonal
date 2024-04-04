@@ -6,6 +6,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Component
 public class FindGameAdapter implements FindGamePort {
@@ -17,10 +18,10 @@ public class FindGameAdapter implements FindGamePort {
     }
 
     @Override
-    public Game findGameByName(String name) {
-        GameEntity game = gameRepository.findByName(name);
+    public Optional<Game> findGameByName(String name) {
+        Optional<GameEntity> game = gameRepository.findByName(name);
 
-       return game == null ? null : Game.fromEntity(game);
+        return game.map(Game::fromEntity);
 
 
     }

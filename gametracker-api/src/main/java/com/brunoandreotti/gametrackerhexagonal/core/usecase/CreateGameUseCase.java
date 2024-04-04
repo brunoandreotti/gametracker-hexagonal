@@ -5,6 +5,7 @@ import com.brunoandreotti.gametrackerhexagonal.core.ports.in.CreateGameUseCasePo
 import com.brunoandreotti.gametrackerhexagonal.core.ports.out.FindGamePort;
 import com.brunoandreotti.gametrackerhexagonal.core.ports.out.SaveGamePort;
 
+import java.util.Optional;
 
 
 public class CreateGameUseCase implements CreateGameUseCasePort {
@@ -19,9 +20,9 @@ public class CreateGameUseCase implements CreateGameUseCasePort {
 
     @Override
     public Game create(Game game) {
-            Game gameExists = findGamePort.findGameByName(game.getName());
+            Optional<Game> gameExists = findGamePort.findGameByName(game.getName());
 
-            if (gameExists != null) {
+            if (gameExists.isPresent()) {
                 throw new RuntimeException("Game already exists");
             }
 

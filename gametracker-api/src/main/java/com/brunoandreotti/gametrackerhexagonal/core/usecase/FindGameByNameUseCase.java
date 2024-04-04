@@ -4,6 +4,8 @@ import com.brunoandreotti.gametrackerhexagonal.core.domain.Game;
 import com.brunoandreotti.gametrackerhexagonal.core.ports.in.FindGameByNameUseCasePort;
 import com.brunoandreotti.gametrackerhexagonal.core.ports.out.FindGamePort;
 
+import java.util.Optional;
+
 public class FindGameByNameUseCase implements FindGameByNameUseCasePort {
 
     private final FindGamePort findGamePort;
@@ -14,12 +16,12 @@ public class FindGameByNameUseCase implements FindGameByNameUseCasePort {
 
     @Override
     public Game findByName(String name) {
-        Game game = findGamePort.findGameByName(name);
+        Optional<Game> game = findGamePort.findGameByName(name);
 
-        if (game == null) {
+        if (game.isEmpty()) {
             throw new RuntimeException("Game not found");
         }
 
-        return game;
+        return game.get();
     }
 }
