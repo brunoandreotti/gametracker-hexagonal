@@ -27,6 +27,11 @@ public class FindGameAdapter implements FindGamePort {
     }
 
     @Override
+    public Optional<Game> findGameById(Long id) {
+        return gameRepository.findById(id).map(Game::fromEntity);
+    }
+
+    @Override
     public List<Game> findAllGames() {
         return gameRepository.findAll().stream().map(Game::fromEntity).toList();
     }

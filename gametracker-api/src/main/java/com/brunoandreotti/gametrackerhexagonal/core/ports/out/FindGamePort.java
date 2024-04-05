@@ -9,5 +9,7 @@ public interface FindGamePort {
 
     Optional<Game> findGameByName(String name);
 
+    Optional<Game> findGameById(Long id);
+
     List<Game> findAllGames();
 }
