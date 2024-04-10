@@ -2,6 +2,7 @@ package com.brunoandreotti.gametrackerhexagonal.core.usecase;
 
 import com.brunoandreotti.gametrackerhexagonal.core.domain.Game;
 import com.brunoandreotti.gametrackerhexagonal.core.exception.GameNotFoundException;
+import com.brunoandreotti.gametrackerhexagonal.core.ports.out.DeleteGamePort;
 import com.brunoandreotti.gametrackerhexagonal.core.ports.out.FindGamePort;
 import com.brunoandreotti.gametrackerhexagonal.factory.GameTestFactory;
 import org.assertj.core.api.Assertions;
@@ -17,42 +18,48 @@ import java.util.Optional;
 import java.util.Random;
 
 @ExtendWith(MockitoExtension.class)
-class FindGameByNameUseCaseTest {
+class DeleteGameUseCaseTest {
 
     @Mock
-    private FindGamePort findGamePort;
+    private  FindGamePort findGamePort;
+
+    @Mock
+    private  DeleteGamePort deleteGamePort;
 
     @InjectMocks
-    private FindGameByNameUseCase findGameByNameUseCase;
+    private  DeleteGameUseCase deleteGameUseCase;
 
     @BeforeEach
     void setUp() {
-        findGameByNameUseCase = new FindGameByNameUseCase(findGamePort);
+        deleteGameUseCase = new DeleteGameUseCase(findGamePort, deleteGamePort);
     }
 
     @Test
-    void should_FindGameByName_ReturnGame() {
+    void should_deleteExistingGame_returnVoid() {
+
         Game game = GameTestFactory.createGame();
         game.setId(new Random().nextLong());
 
-        Mockito.when(findGamePort.findGameByName(game.getName())).thenReturn(Optional.of(game));
+        Mockito.when(findGamePort.findGameById(game.getId())).thenReturn(Optional.of(game));
 
-        Game result = findGameByNameUseCase.findByName(game.getName());
 
-        Assertions.assertThat(result).isEqualTo(game);
+        deleteGameUseCase.delete(game.getId());
+
+        Mockito.verify(deleteGamePort, Mockito.times(1)).deleteGameById(game.getId());
     }
 
     @Test
-    void shouldNot_FindGameByNonExistingName_ReturnException() {
+    void shouldNot_deleteNonExistingGame_returnException() {
         Game game = GameTestFactory.createGame();
         game.setId(new Random().nextLong());
 
-        Mockito.when(findGamePort.findGameByName(game.getName())).thenReturn(Optional.empty());
+        Mockito.when(findGamePort.findGameById(game.getId())).thenReturn(Optional.empty());
 
-        Assertions.assertThatThrownBy(() -> findGameByNameUseCase.findByName(game.getName()))
+
+        Assertions.assertThatThrownBy(() -> deleteGameUseCase.delete(game.getId()))
                 .isInstanceOf(GameNotFoundException.class)
                 .hasMessage("Game not found");
+
+
     }
-
-
 }

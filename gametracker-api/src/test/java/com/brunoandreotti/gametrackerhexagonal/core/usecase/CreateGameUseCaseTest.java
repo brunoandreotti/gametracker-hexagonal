@@ -4,7 +4,8 @@ package com.brunoandreotti.gametrackerhexagonal.core.usecase;
 
 import com.brunoandreotti.gametrackerhexagonal.core.domain.Game;
 
-import com.brunoandreotti.gametrackerhexagonal.core.ports.in.CreateGameUseCasePort;
+import com.brunoandreotti.gametrackerhexagonal.core.exception.GameAlreadyExistsException;
+
 import com.brunoandreotti.gametrackerhexagonal.core.ports.out.FindGamePort;
 import com.brunoandreotti.gametrackerhexagonal.core.ports.out.SaveGamePort;
 import com.brunoandreotti.gametrackerhexagonal.factory.GameTestFactory;
@@ -70,7 +71,7 @@ class CreateGameUseCaseTest {
         Mockito.when(findGamePort.findGameByName(game.getName())).thenReturn(Optional.of(gameWithId));
 
         Assertions.assertThatThrownBy(() -> createGameUseCase.create(game))
-                .isInstanceOf(RuntimeException.class)
+                .isInstanceOf(GameAlreadyExistsException.class)
                 .hasMessage("Game already exists");
 
     }

@@ -1,6 +1,7 @@
 package com.brunoandreotti.gametrackerhexagonal.core.usecase;
 
 import com.brunoandreotti.gametrackerhexagonal.core.domain.Game;
+import com.brunoandreotti.gametrackerhexagonal.core.exception.GameAlreadyExistsException;
 import com.brunoandreotti.gametrackerhexagonal.core.ports.in.CreateGameUseCasePort;
 import com.brunoandreotti.gametrackerhexagonal.core.ports.out.FindGamePort;
 import com.brunoandreotti.gametrackerhexagonal.core.ports.out.SaveGamePort;
@@ -23,7 +24,7 @@ public class CreateGameUseCase implements CreateGameUseCasePort {
             Optional<Game> gameExists = findGamePort.findGameByName(game.getName());
 
             if (gameExists.isPresent()) {
-                throw new RuntimeException("Game already exists");
+                throw new GameAlreadyExistsException("Game already exists");
             }
 
             return saveGamePort.saveGame(game);

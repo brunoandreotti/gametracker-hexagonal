@@ -1,6 +1,7 @@
 package com.brunoandreotti.gametrackerhexagonal.core.usecase;
 
 import com.brunoandreotti.gametrackerhexagonal.core.domain.Game;
+import com.brunoandreotti.gametrackerhexagonal.core.exception.GameNotFoundException;
 import com.brunoandreotti.gametrackerhexagonal.core.ports.in.FindGameByNameUseCasePort;
 import com.brunoandreotti.gametrackerhexagonal.core.ports.out.FindGamePort;
 
@@ -19,7 +20,7 @@ public class FindGameByNameUseCase implements FindGameByNameUseCasePort {
         Optional<Game> game = findGamePort.findGameByName(name);
 
         if (game.isEmpty()) {
-            throw new RuntimeException("Game not found");
+            throw new GameNotFoundException("Game not found");
         }
 
         return game.get();

@@ -1,6 +1,7 @@
 package com.brunoandreotti.gametrackerhexagonal.core.usecase;
 
 import com.brunoandreotti.gametrackerhexagonal.core.domain.Game;
+import com.brunoandreotti.gametrackerhexagonal.core.exception.GameNotFoundException;
 import com.brunoandreotti.gametrackerhexagonal.core.ports.in.DeleteGameUseCasePort;
 import com.brunoandreotti.gametrackerhexagonal.core.ports.out.DeleteGamePort;
 import com.brunoandreotti.gametrackerhexagonal.core.ports.out.FindGamePort;
@@ -23,7 +24,7 @@ public class DeleteGameUseCase implements DeleteGameUseCasePort {
         Optional<Game> gameExists = findGamePort.findGameById(id);
 
         if (gameExists.isEmpty()) {
-            throw  new RuntimeException("Game not found");
+            throw  new GameNotFoundException("Game not found");
         }
 
        deleteGamePort.deleteGameById(id);

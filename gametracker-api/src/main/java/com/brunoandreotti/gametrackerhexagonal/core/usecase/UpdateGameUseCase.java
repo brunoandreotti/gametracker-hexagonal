@@ -1,6 +1,7 @@
 package com.brunoandreotti.gametrackerhexagonal.core.usecase;
 
 import com.brunoandreotti.gametrackerhexagonal.core.domain.Game;
+import com.brunoandreotti.gametrackerhexagonal.core.exception.GameNotFoundException;
 import com.brunoandreotti.gametrackerhexagonal.core.ports.in.UpdateGameUseCasePort;
 import com.brunoandreotti.gametrackerhexagonal.core.ports.out.FindGamePort;
 import com.brunoandreotti.gametrackerhexagonal.core.ports.out.SaveGamePort;
@@ -25,7 +26,7 @@ public class UpdateGameUseCase implements UpdateGameUseCasePort {
         Optional<Game> game = findGamePort.findGameById(id);
 
         if (game.isEmpty()) {
-            throw new RuntimeException("Game not found");
+            throw new GameNotFoundException("Game not found");
         }
 
         BeanUtils.copyProperties(updatedGame, game.get(), "id");
