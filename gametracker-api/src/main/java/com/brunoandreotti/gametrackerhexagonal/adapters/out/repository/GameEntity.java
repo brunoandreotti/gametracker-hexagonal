@@ -27,6 +27,7 @@ public class GameEntity {
     private String imageUrl;
 
     public GameEntity(Game game) {
+        this.id = game.getId();
         this.name = game.getName();
         this.averageRate = getAverageRate();
         this.imageUrl = game.getImageUrl();

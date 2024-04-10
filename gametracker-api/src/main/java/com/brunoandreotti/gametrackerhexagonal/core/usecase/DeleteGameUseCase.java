@@ -23,7 +23,7 @@ public class DeleteGameUseCase implements DeleteGameUseCasePort {
         Optional<Game> gameExists = findGamePort.findGameById(id);
 
         if (gameExists.isEmpty()) {
-            throw  new RuntimeException("Game do not exists");
+            throw  new RuntimeException("Game not found");
         }
 
        deleteGamePort.deleteGameById(id);

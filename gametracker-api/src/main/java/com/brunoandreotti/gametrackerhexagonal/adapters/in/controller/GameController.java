@@ -1,11 +1,10 @@
 package com.brunoandreotti.gametrackerhexagonal.adapters.in.controller;
 
 import com.brunoandreotti.gametrackerhexagonal.adapters.in.controller.request.GameRequestDTO;
+import com.brunoandreotti.gametrackerhexagonal.adapters.in.controller.request.UpdateGameRequestDTO;
 import com.brunoandreotti.gametrackerhexagonal.adapters.in.controller.response.GameResponseDTO;
-import com.brunoandreotti.gametrackerhexagonal.core.ports.in.CreateGameUseCasePort;
-import com.brunoandreotti.gametrackerhexagonal.core.ports.in.DeleteGameUseCasePort;
-import com.brunoandreotti.gametrackerhexagonal.core.ports.in.FindAllGamesUseCasePort;
-import com.brunoandreotti.gametrackerhexagonal.core.ports.in.FindGameByNameUseCasePort;
+
+import com.brunoandreotti.gametrackerhexagonal.core.ports.in.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -24,12 +23,15 @@ public class GameController {
 
     private final DeleteGameUseCasePort deleteGameUseCase;
 
+    private final UpdateGameUseCasePort updateGameUseCase;
 
-    public GameController(CreateGameUseCasePort createGameUseCase, FindAllGamesUseCasePort findAllGamesUseCase, FindGameByNameUseCasePort findGameByNameUseCase, DeleteGameUseCasePort deleteGameUseCase) {
+
+    public GameController(CreateGameUseCasePort createGameUseCase, FindAllGamesUseCasePort findAllGamesUseCase, FindGameByNameUseCasePort findGameByNameUseCase, DeleteGameUseCasePort deleteGameUseCase, UpdateGameUseCasePort updateGameUseCase) {
         this.createGameUseCase = createGameUseCase;
         this.findAllGamesUseCase = findAllGamesUseCase;
         this.findGameByNameUseCase = findGameByNameUseCase;
         this.deleteGameUseCase = deleteGameUseCase;
+        this.updateGameUseCase = updateGameUseCase;
     }
 
     @PostMapping()
@@ -51,5 +53,10 @@ public class GameController {
     public ResponseEntity<Void> deleteGame(@PathVariable Long id) {
         deleteGameUseCase.delete(id);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<GameResponseDTO> updateGameById(@PathVariable Long id, @RequestBody UpdateGameRequestDTO gameRequest) {
+        return ResponseEntity.status(HttpStatus.OK).body(GameResponseDTO.fromGameDomain(updateGameUseCase.updateById(gameRequest.toGameDomain(), id)));
     }
 }

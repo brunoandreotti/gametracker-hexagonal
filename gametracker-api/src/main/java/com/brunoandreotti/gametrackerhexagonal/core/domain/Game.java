@@ -19,6 +19,15 @@ public class Game {
         this.imageUrl = imageUrl;
     }
 
+    public Game(String name, String imageUrl, Integer averageRate) {
+
+        this.name = name;
+
+        this.imageUrl = imageUrl;
+
+        this.averageRate = averageRate;
+    }
+
     public Game() {
 
     }
