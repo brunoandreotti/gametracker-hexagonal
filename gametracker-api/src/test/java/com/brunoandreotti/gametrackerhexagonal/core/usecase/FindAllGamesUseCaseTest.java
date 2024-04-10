@@ -15,7 +15,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import java.util.List;
 
 @ExtendWith(MockitoExtension.class)
-public class FindAllGamesUseCaseTest {
+class FindAllGamesUseCaseTest {
 
     @Mock
     private FindGamePort findGamePort;
