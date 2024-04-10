@@ -4,6 +4,7 @@ package com.brunoandreotti.gametrackerhexagonal.core.usecase;
 
 import com.brunoandreotti.gametrackerhexagonal.core.domain.Game;
 
+import com.brunoandreotti.gametrackerhexagonal.core.ports.in.CreateGameUseCasePort;
 import com.brunoandreotti.gametrackerhexagonal.core.ports.out.FindGamePort;
 import com.brunoandreotti.gametrackerhexagonal.core.ports.out.SaveGamePort;
 import com.brunoandreotti.gametrackerhexagonal.factory.GameTestFactory;
@@ -27,32 +28,34 @@ import java.util.Random;
 class CreateGameUseCaseTest {
 
     @Mock
-    private SaveGamePort saveGameAdapter;
+    private SaveGamePort saveGamePort;
 
     @Mock
-    private FindGamePort findGameAdapter;
+    private FindGamePort findGamePort;
 
     @InjectMocks
     private CreateGameUseCase createGameUseCase;
 
     @BeforeEach
     void setUp() {
-        createGameUseCase = new CreateGameUseCase(saveGameAdapter, findGameAdapter);
+        createGameUseCase = new CreateGameUseCase(saveGamePort, findGamePort);
     }
 
 
     @Test
     void should_createGame_WithValidData_ReturnGame() {
+        //Arrange
         Game game = GameTestFactory.createGame();
         Game gameWithId = new Game(game.getName(), game.getImageUrl());
         gameWithId.setId(new Random().nextLong());
 
+        Mockito.when(findGamePort.findGameByName(game.getName())).thenReturn(Optional.empty());
+        Mockito.when(saveGamePort.saveGame(game)).thenReturn(gameWithId);
 
-        Mockito.when(findGameAdapter.findGameByName(game.getName())).thenReturn(Optional.empty());
-        Mockito.when(saveGameAdapter.saveGame(game)).thenReturn(gameWithId);
-
+        //Act
         Game result = createGameUseCase.create(game);
 
+        //Assert
         Assertions.assertThat(result).isEqualTo(gameWithId);
 
 
@@ -64,7 +67,7 @@ class CreateGameUseCaseTest {
         Game gameWithId = new Game(game.getName(), game.getImageUrl());
         gameWithId.setId(new Random().nextLong());
 
-        Mockito.when(findGameAdapter.findGameByName(game.getName())).thenReturn(Optional.of(gameWithId));
+        Mockito.when(findGamePort.findGameByName(game.getName())).thenReturn(Optional.of(gameWithId));
 
         Assertions.assertThatThrownBy(() -> createGameUseCase.create(game))
                 .isInstanceOf(RuntimeException.class)
