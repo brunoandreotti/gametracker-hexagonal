@@ -12,7 +12,7 @@ public class DeleteGameUseCase implements DeleteGameUseCasePort {
     private final FindGamePort findGamePort;
     private final DeleteGamePort deleteGamePort;
 
-    public DeleteGameUseCase(FindGamePort findGamePort, DeleteGameUseCasePort deleteGameUseCasePort, DeleteGamePort deleteGamePort) {
+    public DeleteGameUseCase(FindGamePort findGamePort, DeleteGamePort deleteGamePort) {
         this.findGamePort = findGamePort;
         this.deleteGamePort = deleteGamePort;
 

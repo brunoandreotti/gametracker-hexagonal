@@ -3,7 +3,7 @@ package com.brunoandreotti.gametrackerhexagonal.adapters.out.repository;
 import com.brunoandreotti.gametrackerhexagonal.core.domain.Game;
 import com.brunoandreotti.gametrackerhexagonal.core.ports.out.FindGamePort;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
+
 
 import java.util.List;
 import java.util.Optional;

@@ -1,7 +1,9 @@
 package com.brunoandreotti.gametrackerhexagonal.adapters.out.repository;
 
 import com.brunoandreotti.gametrackerhexagonal.core.ports.out.DeleteGamePort;
+import org.springframework.stereotype.Component;
 
+@Component
 public class DeleteGameAdapter implements DeleteGamePort {
 
     private final GameRepository gameRepository;

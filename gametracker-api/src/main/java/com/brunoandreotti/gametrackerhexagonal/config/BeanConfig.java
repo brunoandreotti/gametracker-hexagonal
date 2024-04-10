@@ -1,13 +1,16 @@
 package com.brunoandreotti.gametrackerhexagonal.config;
 
+import com.brunoandreotti.gametrackerhexagonal.adapters.out.repository.DeleteGameAdapter;
 import com.brunoandreotti.gametrackerhexagonal.adapters.out.repository.FindGameAdapter;
 import com.brunoandreotti.gametrackerhexagonal.adapters.out.repository.SaveGameAdapter;
 import com.brunoandreotti.gametrackerhexagonal.core.ports.in.CreateGameUseCasePort;
 
+import com.brunoandreotti.gametrackerhexagonal.core.ports.in.DeleteGameUseCasePort;
 import com.brunoandreotti.gametrackerhexagonal.core.ports.in.FindAllGamesUseCasePort;
 
 import com.brunoandreotti.gametrackerhexagonal.core.ports.in.FindGameByNameUseCasePort;
 import com.brunoandreotti.gametrackerhexagonal.core.usecase.CreateGameUseCase;
+import com.brunoandreotti.gametrackerhexagonal.core.usecase.DeleteGameUseCase;
 import com.brunoandreotti.gametrackerhexagonal.core.usecase.FindAllGamesUseCase;
 import com.brunoandreotti.gametrackerhexagonal.core.usecase.FindGameByNameUseCase;
 import org.springframework.context.annotation.Bean;
@@ -31,6 +34,11 @@ public class BeanConfig {
     @Bean
     public FindGameByNameUseCasePort findGameByNameUseCase (FindGameAdapter findGameAdapter) {
         return new FindGameByNameUseCase(findGameAdapter);
+    }
+
+    @Bean
+    public DeleteGameUseCasePort deleteGameUseCasePort (DeleteGameAdapter deleteGameAdapter, FindGameAdapter findGameAdapter) {
+        return new DeleteGameUseCase(findGameAdapter, deleteGameAdapter);
     }
 
 
