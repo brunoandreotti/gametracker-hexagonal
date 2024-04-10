@@ -49,7 +49,9 @@ class FindGameByNameUseCaseTest {
 
         Mockito.when(findGamePort.findGameByName(game.getName())).thenReturn(Optional.empty());
 
-        Assertions.assertThatThrownBy(() -> findGameByNameUseCase.findByName(game.getName()))
+
+        String gameName = game.getName();
+        Assertions.assertThatThrownBy(() -> findGameByNameUseCase.findByName(gameName))
                 .isInstanceOf(GameNotFoundException.class)
                 .hasMessage("Game not found");
     }
