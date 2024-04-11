@@ -1,5 +1,7 @@
 package com.brunoandreotti.gametrackapi.core.domain;
 
+import com.brunoandreotti.gametrackapi.adapters.out.repository.GameTrackEntity;
+
 public class GameTrack {
 
     private Long id;
@@ -20,7 +22,18 @@ public class GameTrack {
     }
 
     public GameTrack(Long gameId) {
+            this.gameId = gameId;
+    }
 
+    public GameTrack(Integer hoursPlayed, Integer rate, Long gameId) {
+        this.hoursPlayed = hoursPlayed;
+        this.rate = rate;
+        this.gameId = gameId;
+    }
+
+    public static GameTrack fromEntity(GameTrackEntity gameTrackEntity) {
+
+        return new GameTrack(gameTrackEntity.getId(), gameTrackEntity.getRate(), gameTrackEntity.getHoursPlayed(), gameTrackEntity.getGameId());
     }
 
     public Long getId() {
