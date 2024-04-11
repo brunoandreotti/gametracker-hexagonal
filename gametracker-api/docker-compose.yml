@@ -1,0 +1,29 @@
+version: "3.7"
+services:
+  app:
+    build: .
+    depends_on:
+      - postgres
+    container_name: "app"
+    ports:
+      - "8080:8080"
+    environment:
+      - DB_HOST=host.docker.internal
+      - DB_PORT=5432
+      - DB_DATABASE=dbtest
+      - DB_USERNAME=test
+      - DB_PASSWORD=test
+
+
+  postgres:
+    image: postgres
+    container_name: "postgres"
+    volumes:
+      - ./postgres:/var/lib/postgres
+    environment:
+      - POSTGRES_DB=dbtest
+      - POSTGRES_USER=test
+      - POSTGRES_PASSWORD=test
+    ports:
+      - "5432:5432"
+
