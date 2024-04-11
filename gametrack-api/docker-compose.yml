@@ -3,10 +3,10 @@ services:
   app:
     build: .
     depends_on:
-      - postgres
-    container_name: "game"
+      - postgres2
+    container_name: "gametrack"
     ports:
-      - "8080:8080"
+      - "8081:8081"
     environment:
       - DB_HOST=host.docker.internal
       - DB_PORT=5432
@@ -15,9 +15,9 @@ services:
       - DB_PASSWORD=test
 
 
-  postgres:
+  postgres2:
     image: postgres
-    container_name: "postgres"
+    container_name: "postgres2"
     volumes:
       - ./postgres:/var/lib/postgres
     environment:
@@ -25,5 +25,5 @@ services:
       - POSTGRES_USER=test
       - POSTGRES_PASSWORD=test
     ports:
-      - "5432:5432"
+      - "5433:5433"
 
