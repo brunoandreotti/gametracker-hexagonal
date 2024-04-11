@@ -1,4 +1,4 @@
-package com.brunoandreotti.gametrackerhexagonal.core.ports.out;
+package com.brunoandreotti.gametrackerhexagonal.core.ports.out.game;
 
 import com.brunoandreotti.gametrackerhexagonal.core.domain.Game;
 

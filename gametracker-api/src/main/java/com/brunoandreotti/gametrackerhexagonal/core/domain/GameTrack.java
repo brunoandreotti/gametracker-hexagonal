@@ -4,11 +4,11 @@ package com.brunoandreotti.gametrackerhexagonal.core.domain;
 
 public class GameTrack {
 
-    public GameTrack(Long id, GameStatus status, Double rate, Double hoursPlayed) {
+    public GameTrack(Long id, Integer rate, Integer hoursPlayed, Long gameId) {
         this.id = id;
-        this.status = status;
         this.rate = rate;
         this.hoursPlayed = hoursPlayed;
+        this.gameId = gameId;
     }
 
     public GameTrack() {
@@ -16,14 +16,11 @@ public class GameTrack {
 
     private Long id;
 
+    private Integer rate;
 
-    private GameStatus status = GameStatus.TO_PLAY;
+    private Integer hoursPlayed;
 
-
-    private Double rate;
-
-
-    private Double hoursPlayed;
+    private Long gameId;
 
     public Long getId() {
         return id;
@@ -33,27 +30,29 @@ public class GameTrack {
         this.id = id;
     }
 
-    public GameStatus getStatus() {
-        return status;
-    }
 
-    public void setStatus(GameStatus status) {
-        this.status = status;
-    }
 
-    public Double getRate() {
+    public Integer getRate() {
         return rate;
     }
 
-    public void setRate(Double rate) {
+    public void setRate(Integer rate) {
         this.rate = rate;
     }
 
-    public Double getHoursPlayed() {
+    public Integer getHoursPlayed() {
         return hoursPlayed;
     }
 
-    public void setHoursPlayed(Double hoursPlayed) {
+    public void setHoursPlayed(Integer hoursPlayed) {
         this.hoursPlayed = hoursPlayed;
+    }
+
+    public Long getGameId() {
+        return gameId;
+    }
+
+    public void setGameId(Long gameId) {
+        this.gameId = gameId;
     }
 }

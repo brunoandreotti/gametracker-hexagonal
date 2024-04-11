@@ -1,7 +1,8 @@
 package com.brunoandreotti.gametrackerhexagonal.core.usecase;
 
 import com.brunoandreotti.gametrackerhexagonal.core.domain.Game;
-import com.brunoandreotti.gametrackerhexagonal.core.ports.out.FindGamePort;
+import com.brunoandreotti.gametrackerhexagonal.core.ports.out.game.FindGamePort;
+import com.brunoandreotti.gametrackerhexagonal.core.usecase.game.FindAllGamesUseCase;
 import com.brunoandreotti.gametrackerhexagonal.factory.GameTestFactory;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;

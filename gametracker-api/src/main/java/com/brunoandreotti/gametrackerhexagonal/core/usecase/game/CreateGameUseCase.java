@@ -1,10 +1,10 @@
-package com.brunoandreotti.gametrackerhexagonal.core.usecase;
+package com.brunoandreotti.gametrackerhexagonal.core.usecase.game;
 
 import com.brunoandreotti.gametrackerhexagonal.core.domain.Game;
 import com.brunoandreotti.gametrackerhexagonal.core.exception.GameAlreadyExistsException;
-import com.brunoandreotti.gametrackerhexagonal.core.ports.in.CreateGameUseCasePort;
-import com.brunoandreotti.gametrackerhexagonal.core.ports.out.FindGamePort;
-import com.brunoandreotti.gametrackerhexagonal.core.ports.out.SaveGamePort;
+import com.brunoandreotti.gametrackerhexagonal.core.ports.in.game.CreateGameUseCasePort;
+import com.brunoandreotti.gametrackerhexagonal.core.ports.out.game.FindGamePort;
+import com.brunoandreotti.gametrackerhexagonal.core.ports.out.game.SaveGamePort;
 
 import java.util.Optional;
 

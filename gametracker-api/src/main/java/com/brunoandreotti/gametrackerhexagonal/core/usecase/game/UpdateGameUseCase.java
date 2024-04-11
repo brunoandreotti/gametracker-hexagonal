@@ -1,10 +1,10 @@
-package com.brunoandreotti.gametrackerhexagonal.core.usecase;
+package com.brunoandreotti.gametrackerhexagonal.core.usecase.game;
 
 import com.brunoandreotti.gametrackerhexagonal.core.domain.Game;
 import com.brunoandreotti.gametrackerhexagonal.core.exception.GameNotFoundException;
-import com.brunoandreotti.gametrackerhexagonal.core.ports.in.UpdateGameUseCasePort;
-import com.brunoandreotti.gametrackerhexagonal.core.ports.out.FindGamePort;
-import com.brunoandreotti.gametrackerhexagonal.core.ports.out.SaveGamePort;
+import com.brunoandreotti.gametrackerhexagonal.core.ports.in.game.UpdateGameUseCasePort;
+import com.brunoandreotti.gametrackerhexagonal.core.ports.out.game.FindGamePort;
+import com.brunoandreotti.gametrackerhexagonal.core.ports.out.game.SaveGamePort;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Component;
 

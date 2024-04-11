@@ -4,7 +4,7 @@ import com.brunoandreotti.gametrackerhexagonal.adapters.in.controller.request.Ga
 import com.brunoandreotti.gametrackerhexagonal.adapters.in.controller.request.UpdateGameRequestDTO;
 import com.brunoandreotti.gametrackerhexagonal.adapters.in.controller.response.GameResponseDTO;
 
-import com.brunoandreotti.gametrackerhexagonal.core.ports.in.*;
+import com.brunoandreotti.gametrackerhexagonal.core.ports.in.game.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

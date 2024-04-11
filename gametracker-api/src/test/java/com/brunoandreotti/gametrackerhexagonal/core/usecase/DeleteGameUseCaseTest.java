@@ -2,8 +2,9 @@ package com.brunoandreotti.gametrackerhexagonal.core.usecase;
 
 import com.brunoandreotti.gametrackerhexagonal.core.domain.Game;
 import com.brunoandreotti.gametrackerhexagonal.core.exception.GameNotFoundException;
-import com.brunoandreotti.gametrackerhexagonal.core.ports.out.DeleteGamePort;
-import com.brunoandreotti.gametrackerhexagonal.core.ports.out.FindGamePort;
+import com.brunoandreotti.gametrackerhexagonal.core.ports.out.game.DeleteGamePort;
+import com.brunoandreotti.gametrackerhexagonal.core.ports.out.game.FindGamePort;
+import com.brunoandreotti.gametrackerhexagonal.core.usecase.game.DeleteGameUseCase;
 import com.brunoandreotti.gametrackerhexagonal.factory.GameTestFactory;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -27,7 +28,7 @@ class DeleteGameUseCaseTest {
     private  DeleteGamePort deleteGamePort;
 
     @InjectMocks
-    private  DeleteGameUseCase deleteGameUseCase;
+    private DeleteGameUseCase deleteGameUseCase;
 
     @BeforeEach
     void setUp() {

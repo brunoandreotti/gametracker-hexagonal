@@ -1,10 +1,10 @@
-package com.brunoandreotti.gametrackerhexagonal.core.usecase;
+package com.brunoandreotti.gametrackerhexagonal.core.usecase.game;
 
 import com.brunoandreotti.gametrackerhexagonal.core.domain.Game;
 import com.brunoandreotti.gametrackerhexagonal.core.exception.GameNotFoundException;
-import com.brunoandreotti.gametrackerhexagonal.core.ports.in.DeleteGameUseCasePort;
-import com.brunoandreotti.gametrackerhexagonal.core.ports.out.DeleteGamePort;
-import com.brunoandreotti.gametrackerhexagonal.core.ports.out.FindGamePort;
+import com.brunoandreotti.gametrackerhexagonal.core.ports.in.game.DeleteGameUseCasePort;
+import com.brunoandreotti.gametrackerhexagonal.core.ports.out.game.DeleteGamePort;
+import com.brunoandreotti.gametrackerhexagonal.core.ports.out.game.FindGamePort;
 
 import java.util.Optional;
 

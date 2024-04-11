@@ -43,6 +43,7 @@ public class Game {
 
     private String imageUrl;
 
+
     public static Game fromEntity(GameEntity gameEntity) {
 
         return new Game(gameEntity.getId(), gameEntity.getName(), gameEntity.getAverageRate(), gameEntity.getImageUrl());

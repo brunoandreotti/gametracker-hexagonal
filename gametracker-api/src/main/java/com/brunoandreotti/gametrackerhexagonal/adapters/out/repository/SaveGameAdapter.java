@@ -1,7 +1,7 @@
 package com.brunoandreotti.gametrackerhexagonal.adapters.out.repository;
 
 import com.brunoandreotti.gametrackerhexagonal.core.domain.Game;
-import com.brunoandreotti.gametrackerhexagonal.core.ports.out.SaveGamePort;
+import com.brunoandreotti.gametrackerhexagonal.core.ports.out.game.SaveGamePort;
 
 import org.springframework.stereotype.Component;
 
