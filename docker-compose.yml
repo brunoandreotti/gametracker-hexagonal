@@ -1,0 +1,6 @@
+
+
+include:
+  - path: 'gametrack-api/docker-compose.yml'
+  - path: 'gametracker-api/docker-compose.yml'
+
