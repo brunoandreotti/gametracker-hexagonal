@@ -1,8 +1,8 @@
 package com.brunoandreotti.gametrackerhexagonal.adapters.in.controller;
 
-import com.brunoandreotti.gametrackerhexagonal.adapters.in.controller.request.GameRequestDTO;
-import com.brunoandreotti.gametrackerhexagonal.adapters.in.controller.request.UpdateGameRequestDTO;
-import com.brunoandreotti.gametrackerhexagonal.adapters.in.controller.response.GameResponseDTO;
+import com.brunoandreotti.gametrackerhexagonal.adapters.in.request.GameRequestDTO;
+import com.brunoandreotti.gametrackerhexagonal.adapters.in.request.UpdateGameRequestDTO;
+import com.brunoandreotti.gametrackerhexagonal.adapters.in.response.GameResponseDTO;
 
 import com.brunoandreotti.gametrackerhexagonal.core.ports.in.game.*;
 import org.springframework.http.HttpStatus;

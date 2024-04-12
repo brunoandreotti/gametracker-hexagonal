@@ -31,6 +31,6 @@ public class FindGameTrackByGameIdUseCase implements FindGameTrackByGameIdUseCas
         }
 
 
-        return findGameTrackPort.findGameIdById(gameId);
+        return findGameTrackPort.findGameTrackByGameId(gameId);
     }
 }

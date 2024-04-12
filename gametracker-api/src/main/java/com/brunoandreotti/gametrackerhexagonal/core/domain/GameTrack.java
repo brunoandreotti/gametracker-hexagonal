@@ -11,6 +11,13 @@ public class GameTrack {
         this.gameId = gameId;
     }
 
+    public GameTrack(Integer rate, Integer hoursPlayed, Long gameId) {
+
+        this.rate = rate;
+        this.hoursPlayed = hoursPlayed;
+        this.gameId = gameId;
+    }
+
     public GameTrack() {
     }
 

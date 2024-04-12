@@ -1,10 +1,10 @@
 package com.brunoandreotti.gametrackerhexagonal.adapters.out.client;
 
-import com.brunoandreotti.gametrackerhexagonal.adapters.in.controller.response.GameTrackResponseDTO;
-import com.brunoandreotti.gametrackerhexagonal.core.domain.Game;
+import com.brunoandreotti.gametrackerhexagonal.adapters.in.request.GameTrackRequestDTO;
+import com.brunoandreotti.gametrackerhexagonal.adapters.in.response.GameTrackResponseDTO;
+
 import org.springframework.cloud.openfeign.FeignClient;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -13,4 +13,10 @@ public interface GameTrackClient {
 
     @GetMapping("/gametracks/{id}")
     List<GameTrackResponseDTO> getGameTrackByGameId(@PathVariable Long id);
+
+    @PostMapping("/gametracks")
+    GameTrackResponseDTO createGameTrack(@RequestBody GameTrackRequestDTO gameTrackRequestDTO);
+
+    @DeleteMapping("/gametracks/{id}")
+    void deleteGameTrackById(@PathVariable Long id);
 }

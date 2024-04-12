@@ -1,4 +1,4 @@
-package com.brunoandreotti.gametrackerhexagonal.adapters.in.controller.response;
+package com.brunoandreotti.gametrackerhexagonal.adapters.in.response;
 
 
 import com.brunoandreotti.gametrackerhexagonal.core.domain.GameTrack;

@@ -1,4 +1,4 @@
-package com.brunoandreotti.gametrackerhexagonal.adapters.in.controller.request;
+package com.brunoandreotti.gametrackerhexagonal.adapters.in.request;
 
 import com.brunoandreotti.gametrackerhexagonal.core.domain.Game;
 import lombok.AllArgsConstructor;

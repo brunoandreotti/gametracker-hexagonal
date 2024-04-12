@@ -6,5 +6,5 @@ import java.util.List;
 
 public interface FindGameTrackPort {
 
-    List<GameTrack> findGameIdById(Long gameId);
+    List<GameTrack> findGameTrackByGameId(Long gameId);
 }

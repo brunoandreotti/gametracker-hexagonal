@@ -1,6 +1,5 @@
-package com.brunoandreotti.gametrackerhexagonal.adapters.in.controller.response;
+package com.brunoandreotti.gametrackerhexagonal.adapters.in.response;
 
-import com.brunoandreotti.gametrackerhexagonal.adapters.in.controller.request.GameRequestDTO;
 import com.brunoandreotti.gametrackerhexagonal.core.domain.Game;
 import lombok.AllArgsConstructor;
 import lombok.Data;
