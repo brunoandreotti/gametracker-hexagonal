@@ -1,4 +1,4 @@
-package com.brunoandreotti.gametrackerhexagonal.config;
+package com.brunoandreotti.gametrackerhexagonal.config.beans;
 
 import com.brunoandreotti.gametrackerhexagonal.adapters.out.repository.DeleteGameAdapter;
 import com.brunoandreotti.gametrackerhexagonal.adapters.out.repository.FindGameAdapter;
