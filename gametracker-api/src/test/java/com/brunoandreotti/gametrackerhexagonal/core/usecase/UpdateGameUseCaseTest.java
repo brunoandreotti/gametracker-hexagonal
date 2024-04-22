@@ -1,6 +1,7 @@
 package com.brunoandreotti.gametrackerhexagonal.core.usecase;
 
 import com.brunoandreotti.gametrackerhexagonal.core.domain.Game;
+import com.brunoandreotti.gametrackerhexagonal.core.exception.GameNotFoundException;
 import com.brunoandreotti.gametrackerhexagonal.core.ports.out.game.FindGamePort;
 import com.brunoandreotti.gametrackerhexagonal.core.ports.out.game.SaveGamePort;
 import com.brunoandreotti.gametrackerhexagonal.core.usecase.game.UpdateGameUseCase;
@@ -60,8 +61,13 @@ public class UpdateGameUseCaseTest {
     @Test
     void shouldNot_updateNonExistingGame_returnException() {
 
-        Mockito.when(findGamePort.findGameById(Mockito.anyLong())).thenReturn(Optional.empty());
+        Game game = GameTestFactory.createGame();
+        game.setId(new Random().nextLong());
 
-        Assertions.assertThatThrownBy(() -> updateGameUseCase.updateById(Mockito.any(), Mockito.anyLong())).hasMessage("Game not found");
+        Game updateGameInfo = GameTestFactory.createGame();
+
+        Mockito.when(findGamePort.findGameById(game.getId())).thenReturn(Optional.empty());
+
+        Assertions.assertThatThrownBy(() -> updateGameUseCase.updateById(updateGameInfo, game.getId())).isInstanceOf(GameNotFoundException.class);
     }
 }
