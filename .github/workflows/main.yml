@@ -40,7 +40,7 @@ jobs:
       - name: Check out the repository
         uses: actions/checkout@v4
       - name: Connect and deploy in Heroku
-      - uses: akhileshns/heroku-deploy@v3.13.15 # This is the action
+        uses: akhileshns/heroku-deploy@v3.13.15 # This is the action
         with:
           heroku_api_key: ${{secrets.HEROKU_API_KEY}}
           heroku_app_name: "gametracker-game-api" #Must be unique in Heroku
