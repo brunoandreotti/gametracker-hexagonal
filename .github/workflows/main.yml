@@ -13,7 +13,7 @@ on:
 #Informa quais serão os jobs/processos da pipeline
 jobs:
   #Nomeia o job
-  build:
+  build-game-api:
     #Informa em qual anbiente rodará o job
     runs-on: ubuntu-latest
     #Informa quais será os passos do job
@@ -27,5 +27,23 @@ jobs:
           java-version: '17'
           distribution: 'zulu'
           cache: maven
-      - name: Build and test GameTracker-API with Maven
+      - name: Build and test Game-API with Maven
         run: mvn -f gametracker-api/ --batch-mode package
+        
+  deploy-heroku:
+    needs: [build-game-api]
+    #Informa em qual anbiente rodará o job
+    runs-on: ubuntu-latest
+    #Informa quais será os passos do job
+    steps:
+        #Informa qual o nome e o que o passo irá fazer
+      - name: Check out the repository
+        uses: actions/checkout@v4
+      - name: Connect and deploy in Heroku
+      - uses: akhileshns/heroku-deploy@v3.13.15 # This is the action
+        with:
+          heroku_api_key: ${{secrets.HEROKU_API_KEY}}
+          heroku_app_name: "gametracker-game-api" #Must be unique in Heroku
+          heroku_email: "brunoandreotti@outlook.com"
+          appdir: "gametracker-api"
+
