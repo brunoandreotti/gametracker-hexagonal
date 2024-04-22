@@ -1,0 +1,31 @@
+# Nome da pipelina
+name: CI-CD
+
+#Qual o trigger que será escutado para rodar a pipeline
+on:
+  #Informa qual o/os evento(s)
+  push:
+  #Informa qual a/as branch(es)
+    branches: ["main"]
+  #Permite executar a pipeline manualmente
+  workflow_dispatch:
+
+#Informa quais serão os jobs/processos da pipeline
+jobs:
+  #Nomeia o job
+  build:
+    #Informa em qual anbiente rodará o job
+    runs-on: ubuntu-latest
+    #Informa quais será os passos do job
+    steps:
+        #Informa qual o nome e o que o passo irá fazer
+      - name: Check out the repository
+        uses: actions/checkout@v4
+      - name: Set up JDK
+        uses: actions/setup-java@v4.2.1
+        with:
+          java-version: '17'
+          distribution: 'zulu'
+          cache: maven
+      - name: Build and test GameTracker-API with Maven
+        run: mvn -f gametracker-api/ --batch-mode package
