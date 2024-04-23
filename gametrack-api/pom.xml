@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>com.brunoandreotti</groupId>
 	<artifactId>gametrack-api</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>v</version>
 	<name>gametrack-api</name>
 	<description>gametrack-api</description>
 	<properties>
