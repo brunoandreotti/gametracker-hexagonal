@@ -38,6 +38,7 @@ jobs:
           port: ${{ secrets.VPS_PORT }}
           source: 'gametracker-api/target/gametracker-hexagonal-v.jar'
           target: '/home'
+          strip_components: 1
         
   deploy-heroku:
     needs: [build-game-api]
