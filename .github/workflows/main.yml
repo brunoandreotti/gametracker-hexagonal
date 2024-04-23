@@ -29,6 +29,15 @@ jobs:
           cache: maven
       - name: Build and test Game-API with Maven
         run: mvn -f gametracker-api/ --batch-mode package
+      - name: Copy artifact to VPS
+        uses: appleboy/scp-action@v0.1.7
+        with:
+          host: ${{ secrets.VPS_HOST }}
+          username: ${{ secrets.VPS_USER }}
+          password: ${{ secrets.VPS_PWD }}
+          port: ${{ secrets.VPS_PORT }}
+          source: 'gametracker-api/target/gametracker-hexagonal-v.jar'
+          target: '/home'
         
   deploy-heroku:
     needs: [build-game-api]
