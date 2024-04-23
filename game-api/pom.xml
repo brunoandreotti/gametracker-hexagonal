@@ -9,10 +9,10 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.brunoandreotti</groupId>
-	<artifactId>gametracker-hexagonal</artifactId>
+	<artifactId>game-api</artifactId>
 	<version>v</version>
-	<name>gametracker-hexagonal</name>
-	<description>gametracker-hexagonal</description>
+	<name>game-api</name>
+	<description>game-api</description>
 	<properties>
 		<java.version>17</java.version>
 		<spring-cloud.version>2023.0.1</spring-cloud.version>
