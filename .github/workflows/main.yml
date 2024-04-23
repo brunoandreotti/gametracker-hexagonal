@@ -14,7 +14,7 @@ on:
 jobs:
   #Nomeia o job
   build-game-api:
-    #Informa em qual anbiente rodará o job
+    #Informa em qual ambiente rodará o job
     runs-on: ubuntu-latest
     #Informa quais será os passos do job
     steps:
@@ -28,7 +28,7 @@ jobs:
           distribution: 'zulu'
           cache: maven
       - name: Build and test Game-API with Maven
-        run: mvn -f gametracker-api/ --batch-mode package
+        run: mvn -f game-api/ --batch-mode package
       - name: Copy artifact to VPS
         uses: appleboy/scp-action@v0.1.7
         with:
@@ -36,13 +36,13 @@ jobs:
           username: ${{ secrets.VPS_USER }}
           password: ${{ secrets.VPS_PWD }}
           port: ${{ secrets.VPS_PORT }}
-          source: 'gametracker-api/target/gametracker-hexagonal-v.jar'
+          source: 'game-api/target/game-api-v.jar'
           target: '/home'
           strip_components: 2
         
   deploy-heroku:
     needs: [build-game-api]
-    #Informa em qual anbiente rodará o job
+    #Informa em qual ambiente rodará o job
     runs-on: ubuntu-latest
     #Informa quais será os passos do job
     steps:
@@ -55,5 +55,5 @@ jobs:
           heroku_api_key: ${{secrets.HEROKU_API_KEY}}
           heroku_app_name: "gametracker-game-api" #Must be unique in Heroku
           heroku_email: "brunoandreotti@outlook.com"
-          appdir: "gametracker-api"
+          appdir: "game-api"
 
