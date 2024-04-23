@@ -39,7 +39,20 @@ jobs:
           source: 'game-api/target/game-api-v.jar'
           target: '/home'
           strip_components: 2
-        
+          
+  deploy-vps:
+    needs: [build-game-api]
+    runs-on: ubuntu-latest
+    steps:
+      - name: executing remote ssh commands using password
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.VPS_HOST }}
+          username: ${{ secrets.VPS_USER }}
+          password: ${{ secrets.VPS_PWD }}
+          port: ${{ secrets.VPS_PORT }}
+          script: java -jar /home/game-api-v.jar
+          
   deploy-heroku:
     needs: [build-game-api]
     #Informa em qual ambiente rodará o job
