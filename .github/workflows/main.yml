@@ -40,6 +40,33 @@ jobs:
           target: '/home'
           strip_components: 2
 
+  build-and-test-gametrack-api:
+    #Informa em qual ambiente rodará o job
+    runs-on: ubuntu-latest
+    #Informa quais será os passos do job
+    steps:
+        #Informa qual o nome e o que o passo irá fazer
+      - name: Check out the repository
+        uses: actions/checkout@v4
+      - name: Set up JDK
+        uses: actions/setup-java@v4.2.1
+        with:
+          java-version: '17'
+          distribution: 'zulu'
+          cache: maven
+      - name: Build and test Gametrack-API with Maven
+        run: mvn -f gametrack-api/ --batch-mode package
+      - name: Copy artifact to VPS
+        uses: appleboy/scp-action@v0.1.7
+        with:
+          host: ${{ secrets.VPS_HOST }}
+          username: ${{ secrets.VPS_USER }}
+          password: ${{ secrets.VPS_PWD }}
+          port: ${{ secrets.VPS_PORT }}
+          source: 'gametrack-api/target/gametrack-api-v.jar'
+          target: '/home'
+          strip_components: 2
+
   build-and-push-game-api-docker-image:
     needs: [build-and-test-game-api]
     runs-on: ubuntu-latest
@@ -61,7 +88,27 @@ jobs:
           tags: |
             brunoandreotti/game-api:${{ github.run_number }}
             brunoandreotti/game-api:latest
-      
+
+  build-and-push-gametrack-api-docker-image:
+    needs: [build-and-test-gametrack-api]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the repository
+        uses: actions/checkout@v4
+      - name: Docker login
+        uses: docker/login-action@v3.1.0
+        with:
+          username: ${{ secrets.DOCKER_USER }}
+          password: ${{ secrets.DOCKER_PWD }}        
+      - name: Build and push Docker image
+        uses: docker/build-push-action@v5.3.0
+        with:
+          context: gametrack-api
+          file: gametrack-api/Dockerfile
+          push: true
+          tags: |
+            brunoandreotti/gametrack-api:${{ github.run_number }}
+            brunoandreotti/gametrack-api:latest
           
   # deploy-vps:
   #   needs: [build-game-api]
