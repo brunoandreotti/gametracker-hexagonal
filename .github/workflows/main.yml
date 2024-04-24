@@ -123,8 +123,8 @@ jobs:
           port: ${{ secrets.VPS_PORT }}
           script: |
             docker compose -f /home/docker-compose-gametracker.yml down
-            rmi brunoandreotti/game-api
-            rmi brunoandreotti/gametrack-api
+            docker rmi brunoandreotti/game-api
+            docker rmi brunoandreotti/gametrack-api
             docker compose -f /home/docker-compose-gametracker.yml up -d
           
   # deploy-heroku:
