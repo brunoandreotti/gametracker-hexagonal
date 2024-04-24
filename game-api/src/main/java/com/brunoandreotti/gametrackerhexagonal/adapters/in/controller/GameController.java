@@ -4,6 +4,7 @@ import com.brunoandreotti.gametrackerhexagonal.adapters.in.request.GameRequestDT
 import com.brunoandreotti.gametrackerhexagonal.adapters.in.request.UpdateGameRequestDTO;
 import com.brunoandreotti.gametrackerhexagonal.adapters.in.response.GameResponseDTO;
 
+import com.brunoandreotti.gametrackerhexagonal.adapters.in.response.GameTrackResponseDTO;
 import com.brunoandreotti.gametrackerhexagonal.core.ports.in.game.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -58,5 +59,10 @@ public class GameController {
     @PutMapping("/{id}")
     public ResponseEntity<GameResponseDTO> updateGameById(@PathVariable Long id, @RequestBody UpdateGameRequestDTO gameRequest) {
         return ResponseEntity.status(HttpStatus.OK).body(GameResponseDTO.fromGameDomain(updateGameUseCase.updateById(gameRequest.toGameDomain(), id)));
+    }
+
+    @GetMapping("/isAlive")
+    public ResponseEntity<String> checkIsAlive() {
+        return ResponseEntity.status(HttpStatus.OK).body("Is Alive!!!");
     }
 }
