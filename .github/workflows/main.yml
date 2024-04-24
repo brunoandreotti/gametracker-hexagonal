@@ -122,10 +122,10 @@ jobs:
           password: ${{ secrets.VPS_PWD }}
           port: ${{ secrets.VPS_PORT }}
           script: |
-            docker compose -f ${{DOCKER_COMPOSE_DIR}} down
+            docker compose -f ${{ DOCKER_COMPOSE_DIR }} down
             rmi brunoandreotti/game-api
             rmi brunoandreotti/gametrack-api
-            docker compose -f ${{DOCKER_COMPOSE_DIR}} up -d
+            docker compose -f ${{ DOCKER_COMPOSE_DIR }} up -d
           
   # deploy-heroku:
   #   needs: [build-game-api]
