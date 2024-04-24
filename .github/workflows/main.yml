@@ -110,18 +110,22 @@ jobs:
             brunoandreotti/gametrack-api:${{ github.run_number }}
             brunoandreotti/gametrack-api:latest
           
-  # deploy-vps:
-  #   needs: [build-game-api]
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - name: executing remote ssh commands using password
-  #       uses: appleboy/ssh-action@v1.0.3
-  #       with:
-  #         host: ${{ secrets.VPS_HOST }}
-  #         username: ${{ secrets.VPS_USER }}
-  #         password: ${{ secrets.VPS_PWD }}
-  #         port: ${{ secrets.VPS_PORT }}
-  #         script: java -jar /home/game-api-v.jar
+  deploy-vps:
+    needs: [build-and-push-game-api-docker-image, build-and-push-gametrack-api-docker-image]
+    runs-on: ubuntu-latest
+    steps:
+      - name: executing remote ssh commands using password
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.VPS_HOST }}
+          username: ${{ secrets.VPS_USER }}
+          password: ${{ secrets.VPS_PWD }}
+          port: ${{ secrets.VPS_PORT }}
+          script: |
+            docker compose -f ${{DOCKER_COMPOSE_DIR}} down
+            rmi brunoandreotti/game-api
+            rmi brunoandreotti/gametrack-api
+            docker compose -f ${{DOCKER_COMPOSE_DIR}} up -d
           
   # deploy-heroku:
   #   needs: [build-game-api]
