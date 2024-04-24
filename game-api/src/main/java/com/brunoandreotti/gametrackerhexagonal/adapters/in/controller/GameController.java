@@ -63,6 +63,6 @@ public class GameController {
 
     @GetMapping("/isAlive")
     public ResponseEntity<String> checkIsAlive() {
-        return ResponseEntity.status(HttpStatus.OK).body("Is Alive!!!");
+        return ResponseEntity.status(HttpStatus.OK).body("Is Alive!");
     }
 }
